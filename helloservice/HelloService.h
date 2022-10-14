@@ -1,15 +1,17 @@
 #pragma once
 
+#include <binder/BinderService.h>
 #include <BnHelloService.h>
 
 class HelloService: public BnHelloService {
 public:
-    static void publish();
-
     virtual ~HelloService();
 
-    virtual void sayhello();
-    virtual void sayhello_to(const char * name);
+    static void publish(void);
+    static void publishAndJoinThreadPool(); 
+
+    virtual String8 sayhello();
+    virtual String8 sayhello_to(String8 name);
 private:
-    static HelloService* test;
+    static void joinThreadPool();
 };

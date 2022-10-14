@@ -13,6 +13,6 @@ public:
 
         }
 
-    virtual void sayhello(void);
-    virtual void sayhello_to(const char *name);
+    virtual String8 sayhello(void);
+    virtual String8 sayhello_to(String8 name);
 }; 

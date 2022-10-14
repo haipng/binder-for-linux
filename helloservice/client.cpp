@@ -16,15 +16,16 @@ int main(int argc, char *argv[]) {
     do {
         binder = sm->getService(serviceName);
         if (binder != 0) break;
-        cout << serviceName << " not published, waiting..." << endl;
-        usleep(500000); // 0.5 s
+        cout << "client: server is not published, waiting..." << endl;
+        usleep(5000); // 5 ms
     } while(true);
 
+    cout << "client: connected to server\n";
 
     sp<IHelloService> service = interface_cast<IHelloService>(binder);
 
-    service->sayhello();
+    cout << "client: recv from server: " << service->sayhello() << endl;
 
-    service->sayhello_to("Jackson");
+    cout << "client: recv from server: " << service->sayhello_to(String8("Jackson")) << endl;
 }
 

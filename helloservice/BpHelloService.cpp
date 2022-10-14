@@ -1,25 +1,26 @@
+#include <iostream>
 #include <BpHelloService.h>
 
        
-void BpHelloService::sayhello(void)
+String8 BpHelloService::sayhello(void)
 {
-#if 0 
     Parcel data, reply;
     data.writeInt32(0);
+    std::cout << "client: request to say hello\n";
     remote()->transact(SAYHELLO, data, &reply);
 
-    std::cout << "RECV: " << reply.readString8(reply) << std::endl;
-#endif
+    return reply.readString8();
 }
 
 
-void BpHelloService::sayhello_to(const char *name)
+String8 BpHelloService::sayhello_to(String8 name)
 {
-#if 0
     Parcel data, reply;
     data.writeString8(name);
+
+    std::cout << "client: request to say hello to " << name << "\n";
     remote()->transact(SAYHELLO_TO, data, &reply);
-    std::cout << "RECV: " << reply.readString8(reply) << std::endl;
-    #endif
+
+    return reply.readString8();
 }
 

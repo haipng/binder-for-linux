@@ -10,14 +10,9 @@
 using namespace std;
 using namespace android;
 
-String16 serviceName = String16("helloservice");
-
 int main(int argc, char *argv[]) {
-    std::cout << "Hello Server" << std::endl;
+    std::cout << "Hello Server started" << std::endl;
     
-    HelloService::publish();
-    
-    sp<ProcessState> proc(ProcessState::self());
-    proc->startThreadPool();
+    HelloService::publishAndJoinThreadPool();
 }
 

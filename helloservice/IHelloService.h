@@ -1,5 +1,5 @@
 #pragma once
-
+#include <utils/String8.h>
 #include <binder/IInterface.h>
 #include <binder/Parcel.h>
 
@@ -15,7 +15,6 @@ class IHelloService: public IInterface
         SAYHELLO_TO = 0x12
     };
 
-
-    virtual void sayhello(void) =0;
-    virtual void sayhello_to(const char *name) =0;
+    virtual String8 sayhello(void) =0;
+    virtual String8 sayhello_to(String8 name) = 0;
 };
