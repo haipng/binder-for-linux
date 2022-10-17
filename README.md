@@ -15,8 +15,6 @@ binder-for-linux is an experimental project to evaluate the feasibility of porti
 - Android Framework version: **android-6.0.1_r46**
 
 # Modifications
-<details>
-<summary>Click to expand</summary>
 - Make binder & ashmem driver dynamically loadable
     - Modified as a standard loadable kernel module
     - Use `kallsyms` and a shell script to generate symbol dependencies that are not exposed by kernel (e.g. `get_vm_area`)
@@ -26,7 +24,6 @@ binder-for-linux is an experimental project to evaluate the feasibility of porti
     - `cutils/atomic.h` is re-implemented with x86 atomic instructions
 - Dependencies to Android log daemon and SELinux library are removed
 - And other small fixes...
-</details>
 
 # Get Started
 
