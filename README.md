@@ -15,7 +15,8 @@ binder-for-linux is an experimental project to evaluate the feasibility of porti
 - Android Framework version: **android-6.0.1_r46**
 
 # Modifications
-
+<details>
+<summary>Click to expand</summary>
 - Make binder & ashmem driver dynamically loadable
     - Modified as a standard loadable kernel module
     - Use `kallsyms` and a shell script to generate symbol dependencies that are not exposed by kernel (e.g. `get_vm_area`)
@@ -25,6 +26,7 @@ binder-for-linux is an experimental project to evaluate the feasibility of porti
     - `cutils/atomic.h` is re-implemented with x86 atomic instructions
 - Dependencies to Android log daemon and SELinux library are removed
 - And other small fixes...
+</details>
 
 # Get Started
 
@@ -53,8 +55,24 @@ $ sudo test/binderAddInts -n 100 -p 0   # correctness test with 100 iterations
 $ sudo test/binderAddInts -n 10000 -p 4096   # performance test with 4K payload and 10000 iterations
 ```
 
-# Results
+Build and test the HelloService example
+```
+# BUILD
+$ cd helloservice
+$ ./build.sh
+
+# RUN 
+# binder kernel modules and servicemanager should be run in advance
+$ sudo ./server
+# open another terminal for client
+$ sudo ./client
+```
+
+# Results for performance test
+<details>
+<summary>Click to expand</summary>
 
 ![Performance Evaluation](http://i.imgur.com/Oa8csYS.png)
 
 We found an obvious fact that when the payload size is greater than 16K, the transmission latency grows much more rapidly compared with a small payload. After tracing more source code, we inferred that this may be due to the use of the single **global lock**. The Binder driver heavily uses a global lock to protect the critical sections, this may lead to low utilization in high concurrency situation. Also, during the driver initialization phase, the Binder driver created a bottom half – workqueue, to handle the release of system resource and buffer. During the benchmark with larger payload and higher iterations (e.g. 10000 per test), the workqueue need to handle the release request more frequently; however, the implementation of release function also need to acquire the global lock, which leads to much lower performance for real data transmission.
+</details>
