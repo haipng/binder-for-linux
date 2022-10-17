@@ -27,5 +27,7 @@ int main(int argc, char *argv[]) {
     cout << "client: recv from server: " << service->sayhello() << endl;
 
     cout << "client: recv from server: " << service->sayhello_to(String8("Jackson")) << endl;
+
+    cout << "client add integer: " << service->addInts(35, 36) << endl;
 }
 

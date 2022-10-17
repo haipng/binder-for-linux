@@ -10,4 +10,5 @@ public:
                                 const Parcel &data,
                                 Parcel* reply,
                                 uint32_t flags = 0);
+    virtual int addInts(int a, int b);
 };

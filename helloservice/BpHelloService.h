@@ -15,4 +15,5 @@ public:
 
     virtual String8 sayhello(void);
     virtual String8 sayhello_to(String8 name);
+    virtual int addInts(int a, int b);
 }; 

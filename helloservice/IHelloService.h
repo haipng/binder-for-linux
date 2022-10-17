@@ -12,9 +12,11 @@ class IHelloService: public IInterface
 
     enum command {
         SAYHELLO = 0x11,
-        SAYHELLO_TO = 0x12
+        SAYHELLO_TO = 0x12,
+        ADD_INTS = 0x13
     };
 
     virtual String8 sayhello(void) =0;
     virtual String8 sayhello_to(String8 name) = 0;
+    virtual int addInts(int a, int b) = 0;
 };

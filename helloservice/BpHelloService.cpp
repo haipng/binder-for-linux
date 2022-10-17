@@ -24,3 +24,14 @@ String8 BpHelloService::sayhello_to(String8 name)
     return reply.readString8();
 }
 
+int BpHelloService::addInts(int a, int b)
+{
+    Parcel data, reply;
+    data.writeInt32(a);
+    data.writeInt32(b);
+
+    std::cout << "client: request to add integer " << a << " & " << b << std::endl;
+    
+    remote()->transact(ADD_INTS, data, &reply);
+    return reply.readInt32();
+}

@@ -26,10 +26,12 @@ HelloService::~HelloService() {
 
 
 String8 HelloService::sayhello() {
+    std::cout << "HelloService::sayhello\n";
     // do nothing here. Processing in function onTransact()
 }
 
 
 String8 HelloService::sayhello_to(String8 name) {
+    std::cout << "HelloService::sayhello_to\n";
     // do nothing here. Processing in function onTransact()
 }
